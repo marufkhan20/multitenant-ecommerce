@@ -10,13 +10,28 @@ export const Categories: CollectionConfig = {
       unique: true,
     },
     {
-      name: "description",
-      type: "textarea",
+      name: "slug",
+      type: "text",
+      required: true,
+      unique: true,
+      index: true,
     },
     {
-      name: "image",
-      type: "upload",
-      relationTo: "media",
+      name: "color",
+      type: "text",
+    },
+    {
+      name: "parent",
+      type: "relationship",
+      relationTo: "categories",
+      hasMany: false,
+    },
+    {
+      name: "subcategories",
+      type: "join",
+      collection: "categories",
+      on: "parent",
+      hasMany: true,
     },
   ],
 };
